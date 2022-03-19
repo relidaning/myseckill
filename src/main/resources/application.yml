@@ -1,0 +1,38 @@
+server:
+  port: 80
+
+spring:
+
+  thymeleaf:
+    cache: false
+    suffix: .html
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/myseckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password:
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+
+  devtools:
+    restart:
+      enabled: false
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+
+mybatis:
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+
+
