@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.lidaning.myseckill.order.mapper.OrderMapper">
+
+    <resultMap type="xyz.lidaning.myseckill.order.domain.Order" id="OrderResult">
+
+        <result property="id"    column="id"    />
+        <result property="userid"    column="userid"    />
+        <result property="goodsid"    column="goodsid"    />
+        <result property="num"    column="num"    />
+
+    </resultMap>
+
+    <sql id="selectOrderVo">
+        select `id` as id, `userid` as userid, `goodsid` as goodsid, `num` as num  from `order`
+    </sql>
+
+    <select id="selectOrderById" parameterType="String" resultMap="OrderResult">
+        <include refid="selectOrderVo"></include>
+        where `id` = #{id}
+    </select>
+
+    <select id="selectOrderList" parameterType="xyz.lidaning.myseckill.order.domain.Order" resultMap="OrderResult">
+        <include refid="selectOrderVo"/>
+        <where>
+
+            <if test="id != null and id.trim() != ''"> and `id` = #{id}</if>
+            <if test="userid != null and userid.trim() != ''"> and `userid` = #{userid}</if>
+            <if test="goodsid != null and goodsid.trim() != ''"> and `goodsid` = #{goodsid}</if>
+            <if test="num != null and num.trim() != ''"> and `num` = #{num}</if>
+
+        </where>
+    </select>
+
+    <insert id="insertOrder" parameterType="xyz.lidaning.myseckill.order.domain.Order">
+        insert into `order`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="id != null and id != ''">`id`,</if>
+            <if test="userid != null and userid != ''">`userid`,</if>
+            <if test="goodsid != null and goodsid != ''">`goodsid`,</if>
+            <if test="num != null and num != ''">`num`,</if>
+
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="id != null and id != ''">#{id},</if>
+            <if test="userid != null and userid != ''">#{userid},</if>
+            <if test="goodsid != null and goodsid != ''">#{goodsid},</if>
+            <if test="num != null and num != ''">#{num},</if>
+
+         </trim>
+    </insert>
+
+    <update id="updateOrder" parameterType="xyz.lidaning.myseckill.order.domain.Order">
+        update `order`
+        <trim prefix="SET" suffixOverrides=",">
+
+            <if test="id != null and id != ''">`id` = #{id},</if>
+            <if test="userid != null and userid != ''">`userid` = #{userid},</if>
+            <if test="goodsid != null and goodsid != ''">`goodsid` = #{goodsid},</if>
+            <if test="num != null and num != ''">`num` = #{num},</if>
+
+        </trim>
+        where `id` = #{id}
+    </update>
+
+    <delete id="deleteOrderById" parameterType="String">
+        delete from `order` where `id` = #{id}
+    </delete>
+
+    <delete id="deleteOrderByIds" parameterType="String">
+        delete from `order` where `id` in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

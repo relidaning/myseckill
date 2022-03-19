@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.lidaning.myseckill.order.mapper.AccountMapper">
+    
+    <resultMap type="xyz.lidaning.myseckill.order.domain.Account" id="AccountResult">
+
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="reminder"    column="reminder"    />
+        
+    </resultMap>
+
+    <sql id="selectAccountVo">
+        select `id` as id, `user_id` as userId, `reminder` as reminder  from `account`
+    </sql>
+
+    <select id="selectAccountById" parameterType="String" resultMap="AccountResult">
+        <include refid="selectAccountVo"></include>
+        where `id` = #{id}
+    </select>
+
+    <select id="selectAccountList" parameterType="xyz.lidaning.myseckill.order.domain.Account" resultMap="AccountResult">
+        <include refid="selectAccountVo"/>
+        <where>
+
+            <if test="id != null and id.trim() != ''"> and `id` = #{id}</if>
+            <if test="userId != null and userId.trim() != ''"> and `user_id` = #{userId}</if>
+            <if test="reminder != null and reminder.trim() != ''"> and `reminder` = #{reminder}</if>
+            
+        </where>
+    </select>
+    
+    <insert id="insertAccount" parameterType="xyz.lidaning.myseckill.order.domain.Account">
+        insert into `account`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="id != null and id != ''">`id`,</if>
+            <if test="userId != null and userId != ''">`user_id`,</if>
+            <if test="reminder != null and reminder != ''">`reminder`,</if>
+            
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="id != null and id != ''">#{id},</if>
+            <if test="userId != null and userId != ''">#{userId},</if>
+            <if test="reminder != null and reminder != ''">#{reminder},</if>
+            
+         </trim>
+    </insert>
+
+    <update id="updateAccount" parameterType="xyz.lidaning.myseckill.order.domain.Account">
+        update `account`
+        <trim prefix="SET" suffixOverrides=",">
+
+            <if test="id != null and id != ''">`id` = #{id},</if>
+            <if test="userId != null and userId != ''">`user_id` = #{userId},</if>
+            <if test="reminder != null and reminder != ''">`reminder` = #{reminder},</if>
+            
+        </trim>
+        where `id` = #{id}
+    </update>
+
+    <delete id="deleteAccountById" parameterType="String">
+        delete from `account` where `id` = #{id}
+    </delete>
+
+    <delete id="deleteAccountByIds" parameterType="String">
+        delete from `account` where `id` in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

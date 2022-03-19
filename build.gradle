@@ -1,0 +1,62 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'xyz.lidaning'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    maven {
+        url "https://maven.aliyun.com/nexus/content/groups/public"
+    }
+}
+
+dependencies {
+    //spring
+    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.16'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-context', version: '3.1.1'
+
+    //mysql
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    //mybatis
+    implementation group: 'org.mybatis', name: 'mybatis', version: '3.5.9'
+    implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.2'
+
+
+
+
+    //hikariCp 连接池
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
+
+    //dev tools
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+task showRepos {
+    doLast {
+        repositories.each {
+            println "repository: ${it.name} ('${it.url}')"
+        }
+    }
+}
