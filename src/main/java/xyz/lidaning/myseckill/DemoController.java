@@ -26,14 +26,8 @@ public class DemoController {
 //        redisTemplate.opsForValue().set("myseckill-redis", "ready!");
 //        jdbcTemplate.execute(" insert into s_user(`id`) values (1)");
 //        rabbitTemplate.convertAndSend("demo", "Hello from rabbitmq!");
-
-        rabbitTemplate.convertAndSend("orderExchange", "order.seckill", "I got a seckill!");
-
+//        rabbitTemplate.convertAndSend("orderExchange", "order.seckill", "I got a seckill!");
         return "demo";
     }
 
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
 }

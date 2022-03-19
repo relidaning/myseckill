@@ -3,6 +3,9 @@ server:
 
 spring:
 
+  profiles:
+    active: dev
+
   thymeleaf:
     cache: false
     suffix: .html

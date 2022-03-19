@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.lidaning.myseckill.order.mapper.GoodsMapper">
+
+    <resultMap type="xyz.lidaning.myseckill.order.domain.Goods" id="GoodsResult">
+
+        <result property="id"    column="id"    />
+        <result property="goodsname"    column="goodsname"    />
+        <result property="price"    column="price"    />
+        <result property="isseckill"    column="isseckill"    />
+        <result property="describ"    column="describ"    />
+
+    </resultMap>
+
+    <sql id="selectGoodsVo">
+        select `id` as id, `goodsname` as goodsname, `price` as price, `isseckill` as isseckill, `describ` as describ  from `goods`
+    </sql>
+
+    <select id="selectGoodsById" parameterType="String" resultMap="GoodsResult">
+        <include refid="selectGoodsVo"></include>
+        where `id` = #{id}
+    </select>
+
+    <select id="selectGoodsList" parameterType="xyz.lidaning.myseckill.order.domain.Goods" resultMap="GoodsResult">
+        <include refid="selectGoodsVo"/>
+        <where>
+
+            <if test="id != null and id != ''"> and `id` = #{id}</if>
+            <if test="goodsname != null and goodsname != ''"> and `goodsname` = #{goodsname}</if>
+            <if test="price != null and price != ''"> and `price` = #{price}</if>
+            <if test="isseckill != null and isseckill != ''"> and `isseckill` = #{isseckill}</if>
+            <if test="describ != null and describ != ''"> and `describ` = #{describ}</if>
+
+        </where>
+    </select>
+
+    <insert id="insertGoods" parameterType="xyz.lidaning.myseckill.order.domain.Goods">
+        insert into `goods`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="id != null and id != ''">`id`,</if>
+            <if test="goodsname != null and goodsname != ''">`goodsname`,</if>
+            <if test="price != null and price != ''">`price`,</if>
+            <if test="isseckill != null and isseckill != ''">`isseckill`,</if>
+            <if test="describ != null and describ != ''">`describ`,</if>
+
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="id != null and id != ''">#{id},</if>
+            <if test="goodsname != null and goodsname != ''">#{goodsname},</if>
+            <if test="price != null and price != ''">#{price},</if>
+            <if test="isseckill != null and isseckill != ''">#{isseckill},</if>
+            <if test="describ != null and describ != ''">#{describ},</if>
+
+         </trim>
+    </insert>
+
+    <update id="updateGoods" parameterType="xyz.lidaning.myseckill.order.domain.Goods">
+        update `goods`
+        <trim prefix="SET" suffixOverrides=",">
+
+            <if test="id != null and id != ''">`id` = #{id},</if>
+            <if test="goodsname != null and goodsname != ''">`goodsname` = #{goodsname},</if>
+            <if test="price != null and price != ''">`price` = #{price},</if>
+            <if test="isseckill != null and isseckill != ''">`isseckill` = #{isseckill},</if>
+            <if test="describ != null and describ != ''">`describ` = #{describ},</if>
+
+        </trim>
+        where `id` = #{id}
+    </update>
+
+    <delete id="deleteGoodsById" parameterType="String">
+        delete from `goods` where `id` = #{id}
+    </delete>
+
+    <delete id="deleteGoodsByIds" parameterType="String">
+        delete from `goods` where `id` in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

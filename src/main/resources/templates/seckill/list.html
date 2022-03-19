@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>秒杀商品列表</title>
+    <div th:replace="common/framelib::framelib"/>
+</head>
+<body>
+
+<div class="container">
+    <nav th:replace="common/framelib::nav"/>
+
+    <div th:replace="common/framelib::jumbotron"/>
+
+    <div class="row marketing">
+        <div class="col-lg-6" th:each="goods : ${list}" style="padding: 5%;">
+            <h4>[[${goods.goodsname}]]</h4>
+            <p>[[${goods.describ}]]<span style="color: red; padding-left: 10%;">$: [[${goods.price}]]</span></p>
+            <button type="button" class="btn btn-xs btn-danger">Seckill !</button>
+        </div>
+    </div>
+
+    <div th:replace="common/framelib::footer"/>
+
+</div> <!-- /container -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.35/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script>
+    $(document).ready(function(){
+    });
+</script>
+</body>
+</html>
