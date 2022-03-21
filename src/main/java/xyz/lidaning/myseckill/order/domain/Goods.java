@@ -10,7 +10,7 @@ public class Goods implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    private int id;
+    private String id;
 
     private String goodsname;
 

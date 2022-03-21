@@ -16,18 +16,26 @@
         <div class="col-lg-6" th:each="goods : ${list}" style="padding: 5%;">
             <h4>[[${goods.goodsname}]]</h4>
             <p>[[${goods.describ}]]<span style="color: red; padding-left: 10%;">$: [[${goods.price}]]</span></p>
-            <button type="button" class="btn btn-xs btn-danger">Seckill !</button>
+            <button type="button" class="btn btn-xs btn-danger" th:onclick="seckill([[${goods.id}]]);">Seckill !</button>
         </div>
     </div>
 
     <div th:replace="common/framelib::footer"/>
 
 </div> <!-- /container -->
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.35/assets/js/ie10-viewport-bug-workaround.js"></script>
+
 <script>
     $(document).ready(function(){
     });
+
+    function seckill(goodsId){
+        $.ajax('/seckill', {
+            'type': 'post',
+            'data': JSON.stringify({'id':goodsId}),
+            'dataType': 'JSON',
+            'contentType': 'application/json'
+        }).then(data=>console.log(data))
+    }
 </script>
 </body>
 </html>
