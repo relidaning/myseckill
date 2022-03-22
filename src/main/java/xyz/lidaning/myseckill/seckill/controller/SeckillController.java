@@ -77,7 +77,7 @@ public class SeckillController {
         redisScript.setResultType(Boolean.class);//返回类型是Long
         //lua文件存放在resources目录下的redis文件夹内
         redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("lua/seckill.lua")));
-        Boolean b = (Boolean) redisTemplate.execute(redisScript, Arrays.asList("goods:"+goods.getId()+":store"), "");
+        Boolean b = (Boolean) redisTemplate.execute(redisScript, Arrays.asList("goods:"+goods.getId()+":store"));
         log.info("[x] validate store, result: " + b);
 
         if(!b){
