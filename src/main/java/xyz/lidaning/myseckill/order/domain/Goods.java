@@ -1,7 +1,6 @@
 package xyz.lidaning.myseckill.order.domain;
 
-import lombok.*;
-
+import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,7 +9,7 @@ public class Goods implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private int id;
 
     private String goodsname;
 
@@ -19,5 +18,8 @@ public class Goods implements Serializable{
     private String isseckill;
 
     private String describ;
+
+    private int store;
+
 
 }

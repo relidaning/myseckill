@@ -1,13 +1,14 @@
 package xyz.lidaning.myseckill.order.controller;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import xyz.lidaning.common.JsonResult;
 import xyz.lidaning.myseckill.order.domain.Goods;
 import xyz.lidaning.myseckill.order.service.IGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+@Slf4j
 @RestController
 @RequestMapping("/order/goods")
 public class GoodsController{
@@ -21,7 +22,7 @@ public class GoodsController{
     }
 
     @GetMapping(value = "/{id}")
-    public JsonResult getInfo(@PathVariable("id") String id){
+    public JsonResult getInfo(@PathVariable("id") int id){
         return JsonResult.success(goodsService.selectGoodsById(id));
     }
 
@@ -36,7 +37,7 @@ public class GoodsController{
     }
 
     @DeleteMapping
-    public JsonResult remove(@PathVariable String[] ids){
+    public JsonResult remove(@PathVariable int[] ids){
         return JsonResult.success(goodsService.deleteGoodsByIds(ids));
     }
 }

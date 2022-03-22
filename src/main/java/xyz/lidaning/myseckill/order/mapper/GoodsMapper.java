@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface GoodsMapper {
 
-    public Goods selectGoodsById(String id);
+    public Goods selectGoodsById(int id);
 
     public List<Goods> selectGoodsList(Goods goods);
 
@@ -15,7 +15,7 @@ public interface GoodsMapper {
 
     public int updateGoods(Goods goods);
 
-    public int deleteGoodsById(String id);
+    public int deleteGoodsById(int id);
 
-    public int deleteGoodsByIds(String[] ids);
+    public int deleteGoodsByIds(int[] ids);
 }

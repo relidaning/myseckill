@@ -20,10 +20,18 @@ public class InitializeSeckill implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+        //添加秒杀商品
         Goods queryGoods = new Goods();
         queryGoods.setIsseckill("1");
         List<Goods> goods = goodsService.selectGoodsList(queryGoods);
         redisTemplate.opsForValue().set("seckills", goods);
+
+        //添加每件秒杀商品, 方便查询库存
+        goods.forEach(good->{
+            redisTemplate.opsForValue().set("goods:"+good.getId()+":store", good.getStore());
+        });
+
         log.info("[x] hot data has been cache... ");
     }
 }

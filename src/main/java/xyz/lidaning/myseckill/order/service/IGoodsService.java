@@ -5,7 +5,7 @@ import xyz.lidaning.myseckill.order.domain.Goods;
 
 public interface IGoodsService{
 
-    public Goods selectGoodsById(String id);
+    public Goods selectGoodsById(int id);
 
     public List<Goods> selectGoodsList(Goods goods);
 
@@ -13,7 +13,7 @@ public interface IGoodsService{
 
     public int updateGoods(Goods goods);
 
-    public int deleteGoodsByIds(String[] ids);
+    public int deleteGoodsByIds(int[] ids);
 
-    public int deleteGoodsById(String id);
+    public int deleteGoodsById(int id);
 }

@@ -8,13 +8,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.messaging.Message;
 import org.springframework.util.Assert;
 import xyz.lidaning.myseckill.order.domain.Goods;
 import xyz.lidaning.myseckill.order.domain.Order;
+import xyz.lidaning.myseckill.order.service.IGoodsService;
 import xyz.lidaning.myseckill.order.service.IOrderService;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 @Slf4j
@@ -23,6 +26,10 @@ public class MyRabbitMQConfig {
 
     @Autowired
     IOrderService orderService;
+    @Autowired
+    IGoodsService goodsService;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value="orderQueue", durable = "true"),
@@ -36,6 +43,17 @@ public class MyRabbitMQConfig {
         log.info("[x] recieve msg:"+order);
         Assert.isTrue(order!=null, "无效的订单信息");
         orderService.insertOrder(order);
+
+        List<Goods> seckills = (List<Goods>) redisTemplate.opsForValue().get("seckills");
+        for (Goods goods : seckills) {
+            if(goods.getId()==order.getGoodsid()){
+                int result = goods.getStore()-1;
+                log.info("[x] 商品编号: "+goods.getId()+", 当前库存剩余为:"+result);
+                goods.setStore(result);
+                goodsService.updateGoods(goods);
+            }
+        }
+        redisTemplate.opsForValue().set("seckills", seckills);
     }
 
     static void send() throws IOException, TimeoutException {

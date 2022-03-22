@@ -13,7 +13,7 @@ public class GoodsServiceImpl implements IGoodsService{
     private GoodsMapper goodsMapper;
 
     @Override
-    public Goods selectGoodsById(String id){
+    public Goods selectGoodsById(int id){
         return goodsMapper.selectGoodsById(id);
     }
 
@@ -33,12 +33,12 @@ public class GoodsServiceImpl implements IGoodsService{
     }
 
     @Override
-    public int deleteGoodsByIds(String[] ids){
+    public int deleteGoodsByIds(int[] ids){
         return goodsMapper.deleteGoodsByIds(ids);
     }
 
     @Override
-    public int deleteGoodsById(String id){
+    public int deleteGoodsById(int id){
         return goodsMapper.deleteGoodsById(id);
     }
 }

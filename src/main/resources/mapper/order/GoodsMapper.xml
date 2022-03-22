@@ -9,14 +9,15 @@
         <result property="price"    column="price"    />
         <result property="isseckill"    column="isseckill"    />
         <result property="describ"    column="describ"    />
+        <result property="store"    column="store"    />
 
     </resultMap>
 
     <sql id="selectGoodsVo">
-        select `id` as id, `goodsname` as goodsname, `price` as price, `isseckill` as isseckill, `describ` as describ  from `goods`
+        select `id` as id, `goodsname` as goodsname, `price` as price, `isseckill` as isseckill, `describ` as describ, `store` as store  from `goods`
     </sql>
 
-    <select id="selectGoodsById" parameterType="String" resultMap="GoodsResult">
+    <select id="selectGoodsById" parameterType="int" resultMap="GoodsResult">
         <include refid="selectGoodsVo"></include>
         where `id` = #{id}
     </select>
@@ -30,6 +31,7 @@
             <if test="price != null and price != ''"> and `price` = #{price}</if>
             <if test="isseckill != null and isseckill != ''"> and `isseckill` = #{isseckill}</if>
             <if test="describ != null and describ != ''"> and `describ` = #{describ}</if>
+            <if test="store != null and store != ''"> and `store` = #{store}</if>
 
         </where>
     </select>
@@ -43,6 +45,7 @@
             <if test="price != null and price != ''">`price`,</if>
             <if test="isseckill != null and isseckill != ''">`isseckill`,</if>
             <if test="describ != null and describ != ''">`describ`,</if>
+            <if test="store != null and store != ''">`store`,</if>
 
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -52,6 +55,7 @@
             <if test="price != null and price != ''">#{price},</if>
             <if test="isseckill != null and isseckill != ''">#{isseckill},</if>
             <if test="describ != null and describ != ''">#{describ},</if>
+            <if test="store != null and store != ''">#{store},</if>
 
          </trim>
     </insert>
@@ -65,12 +69,13 @@
             <if test="price != null and price != ''">`price` = #{price},</if>
             <if test="isseckill != null and isseckill != ''">`isseckill` = #{isseckill},</if>
             <if test="describ != null and describ != ''">`describ` = #{describ},</if>
+            <if test="store != null">`store` = #{store},</if>
 
         </trim>
         where `id` = #{id}
     </update>
 
-    <delete id="deleteGoodsById" parameterType="String">
+    <delete id="deleteGoodsById" parameterType="int">
         delete from `goods` where `id` = #{id}
     </delete>
 
