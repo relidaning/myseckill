@@ -27,6 +27,6 @@
 - 最后测试了下100w线程10秒请求1000个订单, 通过观察机器运行情况,明显CPU算力成为瓶颈, 在完成秒杀后提前结束测试, 结果如图
   ![avatar](images/T100W-10s-1000-jmeter.png)
   ![avatar](images/T100W-10s-1000-rabbitmq.png)
-  ![avatar](images/T100W-10s-1000-cpu.png)
+  ![avatar](images/T100w-10s-1000-cpu.png)
 ## 结论
 1. 秒杀场景下, 应对高并发,使用redis lua脚本保证判断库存和扣减库存的原子性
