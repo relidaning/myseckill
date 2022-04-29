@@ -1,6 +1,5 @@
-package xyz.lidaning.myseckill.system.controller;
+package xyz.lidaning.system.controller;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

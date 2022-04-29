@@ -1,7 +1,6 @@
 package xyz.lidaning.myseckill.order.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Account implements Serializable{
 

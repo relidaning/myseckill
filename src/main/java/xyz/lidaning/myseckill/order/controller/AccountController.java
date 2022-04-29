@@ -1,11 +1,12 @@
 package xyz.lidaning.myseckill.order.controller;
 
-import java.util.List;
-import xyz.lidaning.common.JsonResult;
-import xyz.lidaning.myseckill.order.domain.Account;
-import xyz.lidaning.myseckill.order.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.lidaning.api.common.JsonResult;
+import xyz.lidaning.myseckill.order.domain.Account;
+import xyz.lidaning.myseckill.order.service.IAccountService;
+
+import java.util.List;
 
 
 @RestController

@@ -1,4 +1,4 @@
-package xyz.lidaning.myseckill.jdbc;
+package xyz.lidaning.jdbc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,11 +1,12 @@
 package xyz.lidaning.myseckill.user.service.impl;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 import xyz.lidaning.myseckill.user.domain.User;
 import xyz.lidaning.myseckill.user.mapper.UserMapper;
 import xyz.lidaning.myseckill.user.service.IUserService;
-import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService{

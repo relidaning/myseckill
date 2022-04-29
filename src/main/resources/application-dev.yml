@@ -1,0 +1,52 @@
+server:
+  port: 80
+
+spring:
+
+  thymeleaf:
+    cache: false
+    suffix: .html
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/myseckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: lidaning
+
+  redis:
+    host: 82.157.147.8
+    port: 6379
+    password: shakeit
+    timeout: 10000
+    database: 1
+
+  devtools:
+    restart:
+      enabled: false
+
+  rabbitmq:
+    host: 82.157.147.8
+    port: 5672
+    username: dev
+    password: dev
+    virtual-host: /
+    listener:
+      simple:
+        concurrency: 2
+        max-concurrency: 10
+        prefetch: 10
+
+mybatis:
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath:mapper/**/*Mapper.xml
+
+logging:
+  level:
+    xyz:
+      lidaning:
+        myseckill: error
+
+
+
+

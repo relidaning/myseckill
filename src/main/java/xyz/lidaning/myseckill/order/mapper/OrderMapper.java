@@ -1,8 +1,9 @@
 package xyz.lidaning.myseckill.order.mapper;
 
-import java.util.List;
-import xyz.lidaning.myseckill.order.domain.Order;
 import org.apache.ibatis.annotations.Mapper;
+import xyz.lidaning.myseckill.order.domain.Order;
+
+import java.util.List;
 
 @Mapper
 public interface OrderMapper {

@@ -1,11 +1,12 @@
 package xyz.lidaning.myseckill.user.controller;
 
-import java.util.List;
-import xyz.lidaning.common.JsonResult;
-import xyz.lidaning.myseckill.user.domain.User;
-import xyz.lidaning.myseckill.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.lidaning.api.common.JsonResult;
+import xyz.lidaning.myseckill.user.domain.User;
+import xyz.lidaning.myseckill.user.service.IUserService;
+
+import java.util.List;
 
 
 @RestController

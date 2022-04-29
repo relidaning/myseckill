@@ -1,4 +1,4 @@
-package xyz.lidaning.myseckill.redis;
+package xyz.lidaning.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

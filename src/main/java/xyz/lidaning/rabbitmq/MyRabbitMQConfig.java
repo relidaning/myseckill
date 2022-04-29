@@ -1,4 +1,4 @@
-package xyz.lidaning.myseckill.rabbitmq;
+package xyz.lidaning.rabbitmq;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

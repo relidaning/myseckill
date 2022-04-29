@@ -1,8 +1,9 @@
 package xyz.lidaning.myseckill.user.mapper;
 
-import java.util.List;
-import xyz.lidaning.myseckill.user.domain.User;
 import org.apache.ibatis.annotations.Mapper;
+import xyz.lidaning.myseckill.user.domain.User;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {

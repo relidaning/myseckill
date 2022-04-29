@@ -1,7 +1,8 @@
 package xyz.lidaning.myseckill.user.service;
 
-import java.util.List;
 import xyz.lidaning.myseckill.user.domain.User;
+
+import java.util.List;
 
 public interface IUserService{
 

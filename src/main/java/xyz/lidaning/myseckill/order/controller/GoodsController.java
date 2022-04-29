@@ -1,12 +1,13 @@
 package xyz.lidaning.myseckill.order.controller;
 
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import xyz.lidaning.common.JsonResult;
-import xyz.lidaning.myseckill.order.domain.Goods;
-import xyz.lidaning.myseckill.order.service.IGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.lidaning.api.common.JsonResult;
+import xyz.lidaning.myseckill.order.domain.Goods;
+import xyz.lidaning.myseckill.order.service.IGoodsService;
+
+import java.util.List;
 
 @Slf4j
 @RestController

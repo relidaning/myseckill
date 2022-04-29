@@ -6,24 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
-import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import xyz.lidaning.common.JsonResult;
+import xyz.lidaning.api.common.JsonResult;
 import xyz.lidaning.myseckill.order.domain.Goods;
 import xyz.lidaning.myseckill.order.domain.Order;
 import xyz.lidaning.myseckill.order.service.IGoodsService;
 import xyz.lidaning.myseckill.user.domain.User;
 
-import javax.management.Query;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 @Slf4j

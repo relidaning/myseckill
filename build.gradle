@@ -36,9 +36,6 @@ dependencies {
     implementation group: 'org.mybatis', name: 'mybatis', version: '3.5.9'
     implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.2'
 
-
-
-
     //hikariCp 连接池
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
 
@@ -46,6 +43,11 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+
+    //lidaning api
+    implementation group: 'xyz.lidaning', name: 'api', version: '1.0.0'
+
+
 
 }
 

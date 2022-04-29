@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.lidaning.myseckill.address.mapper.AddressMapper">
+    
+    <resultMap type="xyz.lidaning.myseckill.address.domain.Address" id="AddressResult">
+
+        <result property="id"    column="id"    />
+        <result property="userid"    column="userid"    />
+        <result property="alias"    column="alias"    />
+        <result property="province"    column="province"    />
+        <result property="city"    column="city"    />
+        <result property="town"    column="town"    />
+        <result property="village"    column="village"    />
+        <result property="addr"    column="addr"    />
+        
+    </resultMap>
+
+    <sql id="selectAddressVo">
+        select `id` as id, `userid` as userid, `alias` as alias, `province` as province, `city` as city, `town` as town, `village` as village, `addr` as addr  from `address`
+    </sql>
+
+    <select id="selectAddressById" parameterType="String" resultMap="AddressResult">
+        <include refid="selectAddressVo"></include>
+        where `id` = #{id}
+    </select>
+
+    <select id="selectAddressList" parameterType="xyz.lidaning.myseckill.address.domain.Address" resultMap="AddressResult">
+        <include refid="selectAddressVo"/>
+        <where>
+
+            <if test="id != null and id != ''"> and `id` = #{id}</if>
+            <if test="userid != null"> and `userid` = #{userid}</if>
+            <if test="alias != null and alias != ''"> and `alias` = #{alias}</if>
+            <if test="province != null and province != ''"> and `province` = #{province}</if>
+            <if test="city != null and city != ''"> and `city` = #{city}</if>
+            <if test="town != null and town != ''"> and `town` = #{town}</if>
+            <if test="village != null and village != ''"> and `village` = #{village}</if>
+            <if test="addr != null and addr != ''"> and `addr` = #{addr}</if>
+            
+        </where>
+    </select>
+    
+    <insert id="insertAddress" parameterType="xyz.lidaning.myseckill.address.domain.Address">
+        insert into `address`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="id != null and id != ''">`id`,</if>
+            <if test="userid != null">`userid`,</if>
+            <if test="alias != null and alias != ''">`alias`,</if>
+            <if test="province != null and province != ''">`province`,</if>
+            <if test="city != null and city != ''">`city`,</if>
+            <if test="town != null and town != ''">`town`,</if>
+            <if test="village != null and village != ''">`village`,</if>
+            <if test="addr != null and addr != ''">`addr`,</if>
+            
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="id != null and id != ''">#{id},</if>
+            <if test="userid != null">#{userid},</if>
+            <if test="alias != null and alias != ''">#{alias},</if>
+            <if test="province != null and province != ''">#{province},</if>
+            <if test="city != null and city != ''">#{city},</if>
+            <if test="town != null and town != ''">#{town},</if>
+            <if test="village != null and village != ''">#{village},</if>
+            <if test="addr != null and addr != ''">#{addr},</if>
+            
+         </trim>
+    </insert>
+
+    <update id="updateAddress" parameterType="xyz.lidaning.myseckill.address.domain.Address">
+        update `address`
+        <trim prefix="SET" suffixOverrides=",">
+
+            <if test="id != null and id != ''">`id` = #{id},</if>
+            <if test="userid != null">`userid` = #{userid},</if>
+            <if test="alias != null and alias != ''">`alias` = #{alias},</if>
+            <if test="province != null and province != ''">`province` = #{province},</if>
+            <if test="city != null and city != ''">`city` = #{city},</if>
+            <if test="town != null and town != ''">`town` = #{town},</if>
+            <if test="village != null and village != ''">`village` = #{village},</if>
+            <if test="addr != null and addr != ''">`addr` = #{addr},</if>
+            
+        </trim>
+        where `id` = #{id}
+    </update>
+
+    <delete id="deleteAddressById" parameterType="String">
+        delete from `address` where `id` = #{id}
+    </delete>
+
+    <delete id="deleteAddressByIds" parameterType="String">
+        delete from `address` where `id` in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

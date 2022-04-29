@@ -1,8 +1,8 @@
 package xyz.lidaning.myseckill.order.domain;
 
 import lombok.Data;
+
 import java.io.Serializable;
-import java.util.Date;
 
 @Data
 public class Goods implements Serializable{
